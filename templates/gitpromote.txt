@@ -1,0 +1,10 @@
+#points are accordingly cut based on the number of people to promote the repository.
+#25 pts --- 50 people
+#50 pts --- 100 people
+#people gain points when they visit a particular repository through 'gitpromote'
+#People also can gain badges.
+
+--Runtime:Scan all the repositories of the user and get the languages in which he/she has got projects. {Eg: Python,C++,Bash,javascript}
+--In code: First of all create empty list of all the languages in which a user can play with on github. {Eg: Python[],C++[],javascript[]}
+--If a user has a repository in a particular language 'X' then add his identity to that particular list.
+--Select people randomly from the lists to promote a repository.
