@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% for ud in user_data %}
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/post.css" rel="stylesheet">
+  <script src="/js/bootstrap.min.js"></script>
+  <script scr="/js/post.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a style="margin-left:160px;margin-top:-13px"class="navbar-brand" href="#"><img src="images/logo.jpg"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!--li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li-->
+        <!--li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li-->
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div style="margin-left:90px"class="input-group col-xs-12">
+         <span class="input-group-addon">@</span>
+         <input type="text" class="form-control" placeholder="Username">
+
+        </div>
+        <!--button type="submit" class="btn btn-default">Submit</button-->
+      </form>
+      <ul class="nav navbar-nav" style="padding:3px;margin-left:200px">
+        <ul class="nav nav-pills">
+          <li><a href="http://gitpromote.appspot.com/user/{{ud.user_login_id}}">{{ud.fullname}}</a></li>
+         <li><a href="http://gitpromote.appspot.com">Home <span class="badge">3</span></a></li>
+         <li><a href="http://gitpromote.appspot.com/signout">Signout </a></li>
+
+
+        </ul>
+        <!--li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container" style="margin-left:90px">
+    {% for post in homepage_posts | batch(1, '&nbsp;') %}
+    <div class="row">
+        {% for p in post %}
+        <div class="[ col-xs-8 col-sm-offset-2 col-sm-6 ]" >
+            <div class="[ panel panel-default ] panel-google-plus">
+                
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li>Featured</li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>{{ud.fullname}}</h3>
+                    <h5><span>Promoted on </span> - <span>Jun 27, 2014</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <a href="http://gitpromote.appspot.com/repo/{{p.promoting_repo_name}}"><h3>{{p.promoting_repo_name}}</h3></a>
+                    <p>{{p.promoting_repo_description}}</p>
+                    <h5><span class="label label-default">{{p.promoting_repo_language}}</span></h5>
+                </div>
+                <div class="panel-footer">
+                    <a href="#">edit tags</a>
+                    |
+                    <a href="#">flag</a>
+                    <!--Language tags need to be placed here-->
+                    <!--button type="button" class="[ btn btn-default ]">
+                        <img src="/images/Capture.png">
+                    </button-->
+                </div>
+                <div class="panel-google-plus-comment">
+                    <img class="img-circle" src="{{ud.avatar_url}}" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        <textarea rows="4"></textarea>
+                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+        
+        <!--div class="[ col-xs-12 col-sm-5 ]">
+            <div class="[ panel panel-default ] panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li>#Snippet</li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>Robert McIntosh</h3>
+                    <h5><span>Shared publicly</span> - <span>Jun 25, 2014</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>Just created a new snippet inspired by the Svbtle Menu. Find it here: <a href="http://bootsnipp.com/snippets/MaWrA">http://bootsnipp.com/snippets/MaWrA</a></p>
+                    <a class="panel-google-plus-image" href="https://plus.google.com/photos/115077481218689845626/albums/6028961040749409985/6028961040650432498">
+                        <img src="https://lh4.googleusercontent.com/-6oO7re5XALY/U6ssH6ijb_I/AAAAAAAAARQ/CeqYilQH7dI/w426-h428/svbtle-inspired-menu.PNG" />
+                    </a>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="[ btn btn-default ]">+1</button>
+                    <button type="button" class="[ btn btn-default ]">
+                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                    </button>
+                    <div class="input-placeholder">Add a comment...</div>
+                </div>
+                <div class="panel-google-plus-comment">
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        <textarea rows="4"></textarea>
+                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+          
+            </div>
+        </div-->
+    {% endfor %}
+</body>
+</html>
