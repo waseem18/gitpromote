@@ -80,9 +80,9 @@
       {% for ui in user_info %}
       <ul class="nav navbar-nav" style="padding:3px;margin-left:200px">
         <ul class="nav nav-pills">
-          <li><a href="#">{{ui.fullname}}</a></li>
-         <li><a href="#">Home <span class="badge">3</span></a></li>
-         <li><a href="#">Signout </a></li>
+          <li><a href="http://gitpromote.appspot.com/user/{{ui.user_login_id}}">{{ui.fullname}}</a></li>
+         <li><a href="http://gitpromote.appspot.com">Home <span class="badge">3</span></a></li>
+         <li><a href="http://gitpromote.appspot.com/signout">Signout </a></li>
 
         </ul>
         {% endfor %}
@@ -116,6 +116,7 @@
   <input type="hidden" name="promoting_repo_forks" value="{{ri.forks}}">
   <input type="hidden" name="promoting_repo_stars" value="{{ri.stars}}">
   <input type="hidden" name="promoting_repo_description" value="{{ri.description}}">
+  <input type="hideen" name="promoting_user_fullname" value="{{ri.}}">
   <div class="well">
     <input type="text" name="rsval" class="span2" value="0" id="sl1" >
     <input type="submit" value="Promote">
