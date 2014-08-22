@@ -1,5 +1,5 @@
 
-<img src="http://gitpromote.appspot.com/images/logo.jpg">
+<a href="http://gitpromote.appspot.com"><img src="http://gitpromote.appspot.com/images/logo.jpg"></a>
 ====================================================================
 <b>gitpromote</b> is a social utility for github users to promote their projects to more people like you and me.
 
