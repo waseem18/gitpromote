@@ -77,7 +77,7 @@
         {% for p in tagged_post %}
         <div class="[ col-xs-8 col-sm-offset-2 col-sm-6 ]" >
             <div class="[ panel panel-default ] panel-google-plus">
-                {% if p.promoting_repo_stars > 5 %}
+                {% if p.promoting_repo_stars|int > 5 %}
                 <div class="panel-google-plus-tags">
                     <ul>
                         <li>Featured</li>
