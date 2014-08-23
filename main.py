@@ -2,8 +2,6 @@
 #Product:gitpromote
 #version: alpha
 #License: MIT
-#Bug: Delete a repo which is deleted on github.
-#Logout user if there is a change in the session id stored in cookie!
 import webapp2
 import jinja2
 import requests
