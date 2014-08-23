@@ -241,12 +241,12 @@ class Tag(BaseHandler):
         tag = current_url.split('/')[4]
         user_login_id = self.session.get('user_login_id')
         user_data = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :j",j=user_login_id)
-        tagged_repos = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :e",e=tag)
+        homepage_tagged_posts = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :e",e=tag)
         template_values = {
-        'tagged_repos':tagged_repos,
+        'homepage_tagged_posts':homepage_tagged_posts,
         'user_data':user_data
         }
-        template = jinja_env.get_template('tag.html')
+        template = jinja_env.get_template('homepage-tagged.html')
         self.response.out.write(template.render(template_values))
 
 class Signout(BaseHandler):
