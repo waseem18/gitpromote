@@ -234,18 +234,20 @@ class Promote(BaseHandler):
         pr.put()
         self.redirect('http://gitpromote.appspot.com')
 
-"""
+
 class Tag(BaseHandler):
     def get(self):
         current_url = self.request.url
         tag = current_url.split('/')[4]
+        user_login_id = self.session.get('user_login_id')
+        user_data = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :j",j=user_login_id)
         tagged_repos = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :e",e=tag)
         template_values = {
-        'tagged_repos':tagged_repos
+        'tagged_repos':tagged_repos,
+        'user_data':user_data
         }
         template = jinja_env.get_template('tag.html')
         self.response.out.write(template.render(template_values))
-"""
 
 class Signout(BaseHandler):
   def get(self):
@@ -264,6 +266,6 @@ app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/user/.*',ProfileHandler),
                                ('/repo/.*',Repository),
                                ('/promote',Promote),
-                               #('/tag/.*',Tag),
+                               ('/tagged/.*',Tag),
                                ('/signout',Signout)
                             ], config=config, debug=True)
