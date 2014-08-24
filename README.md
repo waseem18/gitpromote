@@ -7,7 +7,8 @@ One can promote their project on <b>gitpromote</b> when they are in need of a he
 
 
 License
-------------
+----------
 MIT
+
 
 Copyright (c) 2014 Wasim Thabraze
