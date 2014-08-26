@@ -230,7 +230,7 @@ class Promote(BaseHandler):
         promoting_repo_description = self.request.get('promoting_repo_description')
         pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,people=people,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
         pr.put()
-        self.redirect('http://gitpromote.appspot.com')
+        self.redirect('https://gitpromote.appspot.com')
 
 
 class Tag(BaseHandler):
@@ -252,7 +252,7 @@ class Signout(BaseHandler):
     if self.session.get('user_login_id'):
       del self.session['user_login_id']
 
-    self.redirect('http://gitpromote.appspot.com')
+    self.redirect('https://gitpromote.appspot.com')
 
 
 
