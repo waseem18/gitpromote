@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     {% for ud in user_data %}
@@ -49,9 +50,9 @@
       </form>
       <ul class="nav navbar-nav" style="padding:3px;margin-left:200px">
         <ul class="nav nav-pills">
-          <li><a href="http://gitpromote.appspot.com/user/{{ud.user_login_id}}">{{ud.fullname}}</a></li>
-         <li><a href="http://gitpromote.appspot.com">Home <span class="badge">3</span></a></li>
-         <li><a href="http://gitpromote.appspot.com/signout">Signout </a></li>
+          <li><a href="https://gitpromote.appspot.com/user/{{ud.user_login_id}}">{{ud.fullname}}</a></li>
+         <li><a href="https://gitpromote.appspot.com">Home <span class="badge">3</span></a></li>
+         <li><a href="https://gitpromote.appspot.com/signout">Signout </a></li>
 
 
         </ul>
@@ -85,11 +86,11 @@
                 </div>
                 <div class="panel-heading">
                     <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <a href="http://gitpromote.appspot.com/user/{{p.promoting_user_name}}"><h4>{{p.promoting_user_fullname}}</h4></a>
+                    <a href="https://gitpromote.appspot.com/user/{{p.promoting_user_name}}"><h4>{{p.promoting_user_fullname}}</h4></a>
                     <h5><span>Promoted on </span> - <span>Jun 27, 2014</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <a href="http://gitpromote.appspot.com/repo/{{p.promoting_repo_name}}"><h3>{{p.promoting_repo_name}}</h3></a>
+                    <a href="https://gitpromote.appspot.com/repo/{{p.promoting_repo_name}}"><h3>{{p.promoting_repo_name}}</h3></a>
                     <p>{{p.promoting_repo_description}}</p>
                     <h5><span class="label label-default">{{p.promoting_repo_language}}</span></h5>
                 </div>
