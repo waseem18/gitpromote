@@ -1,5 +1,4 @@
 #Author: Wasim Thabraze
-#Product:gitpromote
 #License: MIT
 import webapp2
 import jinja2
