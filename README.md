@@ -9,7 +9,8 @@ One can promote their project on <b>gitpromote</b> when they are in need of a he
 Features to add
 --------------------------
 1.Typeahead search algorithm to search for users and repositories.
-2.
+
+2.Show statistics of promoted repositories specific to language as in Stack overflow.
 
 
 License
