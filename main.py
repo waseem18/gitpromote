@@ -1,5 +1,9 @@
 #Author: Wasim Thabraze
+#Product:gitpromote
+#version: alpha
 #License: MIT
+#Bug: Delete a repo which is deleted on github.
+#Logout user if there is a change in the session id stored in cookie!
 import webapp2
 import jinja2
 import requests
@@ -34,20 +38,21 @@ class BaseHandler(webapp2.RequestHandler):
 
 
 class Userdata(db.Model):
-    user_login_id = db.StringProperty(required=True)
-    fullname = db.StringProperty(required=True)
-    blog = db.StringProperty()
+    user_login_id = db.StringProperty()
+    fullname = db.StringProperty()
+    website = db.StringProperty()
+    bio = db.StringProperty()
     email = db.StringProperty()
     location = db.StringProperty()
     avatar_url = db.LinkProperty()
-    user_html_url = db.LinkProperty(required=True)
-    followers = db.IntegerProperty(required=True)
-    following = db.IntegerProperty(required=True)
+    user_html_url = db.LinkProperty()
+    followers = db.IntegerProperty()
+    following = db.IntegerProperty()
     followers_url = db.LinkProperty()
     following_url = db.LinkProperty()
     repos_url = db.LinkProperty()
-    created_at = db.StringProperty(required=True)
-    updated_at = db.StringProperty(required=True)
+    created_at = db.StringProperty()
+    updated_at = db.StringProperty()
     lang_tags= db.ListProperty(str)
 
 
@@ -65,6 +70,7 @@ class Repodata(db.Model):
 class PromotedRepos(db.Model):
    promoting_repo_name = db.StringProperty()
    promoting_user_name = db.StringProperty()
+   promoting_user_fullname = db.StringProperty()
    people = db.StringProperty()
    promoted_time = db.DateTimeProperty(auto_now=True)
    promoting_repo_language = db.StringProperty()
@@ -88,7 +94,7 @@ class MainHandler(BaseHandler):
     else:
         #User is not logged in. Renders Signup page!
         template_values={}
-        template = jinja_env.get_template('signup.html')
+        template = jinja_env.get_template('index.html')
         self.response.out.write(template.render(template_values))
 
 
@@ -111,20 +117,33 @@ class Developer(BaseHandler):
         user_json_data = requests.get(user_api_url)
         d = json.loads(user_json_data.content)
         user_login_id = d['login']
-        q = db.GqlQuery("SELECT * FROM Userdata WHERE userid= :w",w=user_login_id).fetch(limit=2)
+        q = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :w",w=user_login_id).fetch(limit=2)
         #if len(q)>0:
         #    self.redirect('http://gitpromote.appspot.com')
         #    return
-        fullname = d['name']
+        if 'name' in d:
+            fullname = d['name']
+        else:
+            fullname=""
 
         self.session['user_login_id'] = user_login_id
 
         avatar_url = d['avatar_url']
         user_html_url = d['html_url']
-        blog = d['blog']
-        email = d['email']
-        location = d['location']
+        if 'blog' in d:
+            website = d['blog']
+        else:
+            website=""
+        if 'email' in d:
+            email = d['email']
+        else:
+            email=""
+        if 'location' in d:
+            location = d['location']
+        else:
+            location=""
         public_repos = d['public_repos']
+        bio=""
         followers = d['followers']
         following = d['following']
         repos_url = d['repos_url']
@@ -159,14 +178,39 @@ class Developer(BaseHandler):
         if None in lang_list:
             lang_list.remove(None)
 
-        if len(q)==0:
-            user_instance = Userdata(key_name=user_login_id,repos_url=repos_url,public_repos=public_repos,created_at=created_at,updated_at=updated_at,lang_tags=lang_list,fullname=fullname,user_login_id=user_login_id,avatar_url=avatar_url,user_html_url=user_html_url,blog=blog,email=email,location=location,following=following,followers=followers,following_url=following_url,followers_url=followers_url)
-            user_instance.put()
-            self.redirect('/user/'+str(user_login_id))
         if len(q)>0:
-            user_instance = Userdata(key_name=user_login_id,repos_url=repos_url,public_repos=public_repos,created_at=created_at,updated_at=updated_at,lang_tags=lang_list,namee=name,userid=user_login_id,avatar_url=avatar_url,user_html_url=user_html_url,blog=blog,email=email,location=location,following=following,followers=followers,following_url=following_url,followers_url=followers_url)
+            user_instance = Userdata(key_name=user_login_id,repos_url=repos_url,public_repos=public_repos,created_at=created_at,updated_at=updated_at,lang_tags=lang_list,fullname=fullname,user_login_id=user_login_id,avatar_url=avatar_url,user_html_url=user_html_url,website=website,email=email,location=location,following=following,followers=followers,following_url=following_url,followers_url=followers_url)
             user_instance.put()
             self.redirect('/user/'+str(user_login_id))
+            
+        if len(q)==0:
+            user_instance = Userdata(key_name=user_login_id,repos_url=repos_url,bio=bio,public_repos=public_repos,created_at=created_at,updated_at=updated_at,lang_tags=lang_list,fullname=fullname,user_login_id=user_login_id,avatar_url=avatar_url,user_html_url=user_html_url,website=website,email=email,location=location,following=following,followers=followers,following_url=following_url,followers_url=followers_url)
+            user_instance.put()
+            self.redirect('/details')
+
+
+
+class Details(BaseHandler):
+    def get(self):
+        user_login_id = self.session.get('user_login_id')
+        user_info = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :v",v=user_login_id)
+        template_values = {'user_info':user_info}
+        template = jinja_env.get_template('extrainfo.html')
+        self.response.out.write(template.render(template_values))   
+
+class Redirecting(BaseHandler):
+    def post(self):
+        user_login_id = self.session.get('user_login_id')
+        fullname = self.request.get('fullname')
+        bio = self.request.get('bio')
+        email = self.request.get('email')
+        website=self.request.get('website')
+        user_info = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :g",g=user_login_id)
+        user_info.fullname = fullname
+        user_info.bio = bio
+        user_info.email = email
+        user_info.website = website
+        self.redirect('/user/'+user_login_id)
 
 class ProfileHandler(BaseHandler):
   def get(self):
@@ -221,23 +265,24 @@ class Promote(BaseHandler):
         people = self.request.get('rsval')
         promoting_repo_name = self.request.get('promoting_repo_name')
         promoting_user_name = self.request.get('promoting_user_name')
+        promoting_user_fullname = db.GqlQuery("SELECT fullname FROM Userdata WHERE user_login_id= :l",l=promoting_user_name).get()
+        promoting_user_fullname = promoting_user_fullname.fullname
         promoting_repo_language = self.request.get('promoting_repo_language')
         promoting_repo_forks = self.request.get('promoting_repo_forks')
         promoting_repo_stars = self.request.get('promoting_repo_stars')
         promoted_time = datetime.now()
         promoting_repo_description = self.request.get('promoting_repo_description')
-        pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,people=people,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
+        pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,people=people,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
         pr.put()
-        self.redirect('https://gitpromote.appspot.com')
-
+        self.redirect('http://gitpromote.appspot.com')
 
 class Tag(BaseHandler):
     def get(self):
         current_url = self.request.url
         tag = current_url.split('/')[4]
+        homepage_tagged_posts = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :e",e=tag)
         user_login_id = self.session.get('user_login_id')
         user_data = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :j",j=user_login_id)
-        homepage_tagged_posts = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :e",e=tag)
         template_values = {
         'homepage_tagged_posts':homepage_tagged_posts,
         'user_data':user_data
@@ -245,12 +290,13 @@ class Tag(BaseHandler):
         template = jinja_env.get_template('homepage-tagged.html')
         self.response.out.write(template.render(template_values))
 
+
 class Signout(BaseHandler):
   def get(self):
     if self.session.get('user_login_id'):
       del self.session['user_login_id']
 
-    self.redirect('https://gitpromote.appspot.com')
+    self.redirect('http://gitpromote.appspot.com')
 
 
 
@@ -260,6 +306,8 @@ config['webapp2_extras.sessions'] = {'secret_key': 'some-secret-key-to-use','coo
 app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/dev',Developer),
                                ('/user/.*',ProfileHandler),
+                               ('/red',Redirecting),
+                               ('/details',Details),
                                ('/repo/.*',Repository),
                                ('/promote',Promote),
                                ('/tagged/.*',Tag),
