@@ -1,0 +1,222 @@
+body {
+    font-family: 'Open Sans', sans-serif!important;
+    font-weight: 300;
+    color: #888;
+}
+
+a {
+    color: #383838;
+    text-decoration: none;
+    -moz-transition: color .2s ease-in-out;
+    -webkit-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a img {
+    border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    color: #3e3e3e!important;
+}
+
+h1 strong {
+    font-weight: 700;
+}
+
+.navbar-inverse {
+    background-color: #282828;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    margin-left: -56px;
+}
+
+.container, .navbar .navbar-collapse {
+    text-align: center;
+    visibility: visible!important;
+}
+
+
+/* On smaller displays, show the name */
+@media (max-width: 768px) {
+    .navbar .navbar-collapse {
+        visibility: visible!important;
+    }
+}
+
+.navbar-inverse .navbar-nav > li {
+    padding: 0em 0.4em;
+    margin: 0.2em 0.2em;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    font-weight: 600;
+    border-radius: 8px;
+    -moz-transition: background-color .2s ease-in-out;
+    -webkit-transition: background-color .2s ease-in-out;
+    -o-transition: background-color .2s ease-in-out;
+    -ms-transition: background-color .2s ease-in-out;
+    transition: background-color .2s ease-in-out;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    background: #383838;
+}
+
+.jumbotron .container {
+    padding: 50px 30px;
+}
+
+.jumbotron {
+    box-shadow: inset 0px 1px 0px 0px rgba(0,0,0,0.05), inset 0px 2px 3px 0px rgba(0,0,0,0.1);
+    background: transparent;
+    text-align: left;
+    height: 100%;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+img.me {
+    max-width: 12em;
+    max-height: 12em;
+    margin: 2em auto!important;
+}
+
+p.custom {
+    line-height: 1.8;
+    margin-bottom: 2em;
+}
+
+p.custom-projects {
+    line-height: 1.8;
+    margin-bottom: 0em;
+    padding: 1em 1.2em 1em;
+    font-size: 0.85em;
+}
+
+.jumbotron#projects, .jumbotron#contact, .jumbotron#about {
+    background-color: #f4f4f4;
+    margin-bottom: 0;
+}
+
+.container.projects {
+    padding: 0;
+    margin: 0 auto;
+}
+
+a.btn {
+    text-decoration: none;
+    padding: 0.7em 2em;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+h1.custom {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 2em;
+}
+
+h2.custom {
+    font-weight: 700;
+    margin: 0.5em;
+}
+
+h2.custom a {
+    color: #3e3e3e;
+    text-decoration: none;
+}
+
+h2.custom a:hover {
+    text-decoration: none;
+    color: #3B95C6;
+    -moz-transition: color .2s ease-in-out;
+    -webkit-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+
+.row {
+    margin: 0px auto 30px auto;
+    padding: 0px auto;
+}
+
+.btn-xlarge {
+    padding: 14px 26px;
+    font-size: 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 70px;
+    text-align: center;
+}
+
+.footer {
+    background-color: #282828;
+    padding: 0.5em;
+    font-weight: 400;
+    font-size: 1.2em;
+    color: white;
+}
+
+a.btn.btn-xlarge {
+    padding: 14px 26px!important;
+    margin: 10px 0 10px 0;
+}
+
+@-webkit-keyframes enter_page {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes enter_page {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes enter_page {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes enter_page {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.jumbotron#top {
+    -webkit-animation: enter_page 2s;
+    -moz-animation:    enter_page 2s;
+    -o-animation:      enter_page 2s;
+    animation:         enter_page 2s;
+}
+
+.scale-projects, .custom-btn {
+    -webkit-transition: all .2s ease-in-out;
+}
+.scale-projects:hover, .custom-btn:hover {
+    -webkit-transform: scale(1.05); 
+}
+
+stack-tag {
+    border: 1px solid gray;
+    font-size: 0.65em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 2px 3px;
+    padding: 3px 10px;
+}
