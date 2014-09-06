@@ -15,6 +15,11 @@ Features to be added soon
 Much more...
 
 
+Note:
+-----
+Add bootstrap files to the static folder if you clone this repository.
+
+
 License
 ----------
 MIT
