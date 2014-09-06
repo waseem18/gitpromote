@@ -17,7 +17,7 @@ Much more...
 
 Note:
 -----
-Add bootstrap files to the static folder if you clone this repository.
+Add bootstrap files(not folder) to the static folder if you clone this repository.
 
 
 License
