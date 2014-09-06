@@ -24,7 +24,7 @@ Donation
 
 Please consider donation if this project has helped you in anyway.
 
-https://gratipay/waseem18
+<a href="https://gratipay/waseem18">Gratipay-Wasim Thabraze</a>
 
 
 License
