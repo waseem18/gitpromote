@@ -19,6 +19,13 @@ Note:
 -----
 Add bootstrap files(not folder) to the static folder if you clone this repository.
 
+Donation
+------------
+
+Please consider donation if this project has helped you in anyway.
+
+https://gratipay/waseem18
+
 
 License
 ----------
