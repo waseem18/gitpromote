@@ -2,6 +2,8 @@
 #Product:gitpromote
 #version: alpha
 #License: MIT
+
+
 #Mail me if you wish to speak to me about this project or to just say a Hi! I would humbly respond.:D
 #Bug: Delete a repo which is deleted on github----->To be done in Beta version! 
 #Logout user if there is a change in the session id stored in cookie!---->Bug traced and completely cleared.
