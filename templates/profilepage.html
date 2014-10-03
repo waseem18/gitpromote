@@ -2,13 +2,14 @@
 <html>
 <head>
   {% for ui in user_info %}
+  <title>{{ui.fullname}} | gitpromote</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/profile.css" rel="stylesheet">
   <link href="/css/custom.css" rel="stylesheet">
   <link href="/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/social-buttons.css">
 
-  <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -71,7 +72,7 @@
       </form>
       <ul class="nav navbar-nav" style="padding:3px;margin-left:200px">
         <ul class="nav nav-pills">
-          <li><a href="https://gitpromote.appspot.com/{{ui.user_login_id}}">{{ui.fullname}}</a></li>
+          <li><a href="https://gitpromote.appspot.com/user/{{ui.user_login_id}}">{{ui.fullname}}</a></li>
          <li><a href="https://gitpromote.appspot.com">Home <span class="badge">3</span></a></li>
          <li><a href="https://gitpromote.appspot.com/signout">Signout </a></li>
 
@@ -111,7 +112,7 @@
   </div-->
 
   <div class="container" style="margin-top:125px">
-    <img src="/images/dp.jpg" align="left" style="margin-left:200px;margin-bottom:30px"class="img-rounded" class="img-responsive"/>
+    <img src="{{ui.avatar_url}}" align="left" height="206" width="180" style="margin-left:200px;margin-bottom:30px"class="img-rounded" class="img-responsive"/>
     <div class="col-md-4">
           <h1 class="welcomeText heading"> {{ui.fullname}} </h1>
           <h4>@{{ui.user_login_id}}</h4>

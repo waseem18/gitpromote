@@ -20,21 +20,6 @@
 
   <link rel="stylesheet" href="/rs-css/slider.css">
   <script src="/rs-js/bootstrap-slider.js"></script>
-
-  <script>
-  if (top.location != location) {
-    top.location.href = document.location.href ;
-  }
-    $(function(){
-      window.prettyPrint && prettyPrint();
-
-        $('#sl1').slider({
-          formater: function(value) {
-            return 'Current value: '+value;
-          }
-        })
-    });
-  </script>
     
 </head>
 <body>
@@ -109,18 +94,14 @@
   <h3>Url: {{ri.repo_html_url}}</h3>
   <br>
   <form method="post" action="https://gitpromote.appspot.com/promote">
-  <h3>Promote repository:</h3>
+  <h3>Promote repository</h3>
   <input type="hidden" name="promoting_repo_name" value="{{ri.repo_name}}">
   <input type="hidden" name="promoting_user_name" value="{{ri.user_login_id}}">
   <input type="hidden" name="promoting_repo_language" value="{{ri.language}}">
   <input type="hidden" name="promoting_repo_forks" value="{{ri.forks}}">
   <input type="hidden" name="promoting_repo_stars" value="{{ri.stars}}">
   <input type="hidden" name="promoting_repo_description" value="{{ri.description}}">
-  <input type="hideen" name="promoting_user_fullname" value="{{ri.}}">
-  <div class="well">
-    <input type="text" name="rsval" class="span2" value="0" id="sl1" >
-    <input type="submit" value="Promote">
-  </div>
+  <input type="submit" value="promote">
   <!--button type="button" class="btn btn-default"><a href="http://gitpromote.appspot.com/promote">Promote</a></button-->
 </form>
 </div>
