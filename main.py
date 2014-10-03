@@ -2,9 +2,8 @@
 #Product:gitpromote
 #version: alpha
 #License: MIT
-#Mail me if you wish to speak to me about this project or to just say a Hi! I would humbly respond.:D
-#Bug: Delete a repo which is deleted on github----->To be done in Beta version! 
-#Logout user if there is a change in the session id stored in cookie!---->Bug traced and completely cleared.
+#Bug: Delete a repo which is deleted on github.
+#Logout user if there is a change in the session id stored in cookie!
 import webapp2
 import jinja2
 import requests
@@ -72,7 +71,7 @@ class PromotedRepos(db.Model):
    promoting_repo_name = db.StringProperty()
    promoting_user_name = db.StringProperty()
    promoting_user_fullname = db.StringProperty()
-   people = db.StringProperty()
+   promoting_user_avatar_url = db.LinkProperty()
    promoted_time = db.DateTimeProperty(auto_now=True)
    promoting_repo_language = db.StringProperty()
    promoting_repo_forks = db.StringProperty()
@@ -263,17 +262,17 @@ class Repository(BaseHandler):
 
 class Promote(BaseHandler):
     def post(self):
-        people = self.request.get('rsval')
         promoting_repo_name = self.request.get('promoting_repo_name')
         promoting_user_name = self.request.get('promoting_user_name')
-        promoting_user_fullname = db.GqlQuery("SELECT fullname FROM Userdata WHERE user_login_id= :l",l=promoting_user_name).get()
-        promoting_user_fullname = promoting_user_fullname.fullname
+        pro= db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :l",l=promoting_user_name).get()
+        promoting_user_fullname = pro.fullname
         promoting_repo_language = self.request.get('promoting_repo_language')
+        promoting_user_avatar_url = pro.avatar_url
         promoting_repo_forks = self.request.get('promoting_repo_forks')
         promoting_repo_stars = self.request.get('promoting_repo_stars')
         promoted_time = datetime.now()
         promoting_repo_description = self.request.get('promoting_repo_description')
-        pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,people=people,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
+        pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_user_avatar_url=promoting_user_avatar_url,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
         pr.put()
         self.redirect('http://gitpromote.appspot.com')
 
