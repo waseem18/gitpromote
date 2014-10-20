@@ -112,7 +112,7 @@ class Developer(BaseHandler):
         url_queries = self.request.GET
         state = url_queries['state']
         code = url_queries['code']
-        url = 'https://github.com/login/oauth/access_token?client_id=a454ac3fef0a7cde71df&client_secret=4029cf0da2c400aa755d818dcdda96be97fc94a4&redirect_uri=http://gitpromote.appspot.com/dev&code='+str(code)
+        url = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'+str(code)
         req = requests.post(url)
         req = str(req.content)
         access_token = ""
