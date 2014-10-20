@@ -8,7 +8,7 @@ One can promote their project on <b>gitpromote</b> when they are in need of a he
 
 NOTE: Link to the website will soon be added!
 
-      <b>gitpromote</b> is currently in it's development stage. If you would like to speak to me more aout this project mail me. :D
+<b>gitpromote</b> is currently in it's development stage. If you would like to speak to me more aout this project mail me. :D
 
 Features to be added soon
 --------------------------
