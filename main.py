@@ -2,16 +2,8 @@
 #Product:gitpromote
 #version: alpha
 #License: MIT
-<<<<<<< HEAD
 #Bug: Delete a repo which is deleted on github.
 #Logout user if there is a change in the session id stored in cookie!
-=======
-
-
-#Mail me if you wish to speak to me about this project or to just say a Hi! I would humbly respond.:D
-#Bug: Delete a repo which is deleted on github----->To be done in Beta version! 
-#Logout user if there is a change in the session id stored in cookie!---->Bug traced and completely cleared.
->>>>>>> f93bdfab0b3a6de90818881edf6676c6486609f0
 import webapp2
 import jinja2
 import requests
@@ -85,6 +77,7 @@ class PromotedRepos(db.Model):
    promoting_repo_forks = db.StringProperty()
    promoting_repo_stars = db.StringProperty()
    promoting_repo_description = db.StringProperty()
+   repo_stat = db.IntegerProperty()
 
 
 
@@ -96,7 +89,8 @@ class MainHandler(BaseHandler):
         user_login_id = self.session.get('user_login_id')
         user_data = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :g",g=user_login_id)
         homepage_posts = db.GqlQuery("SELECT * FROM PromotedRepos ORDER BY promoted_time DESC LIMIT 50")
-        template_values={'user_login_id':user_login_id,'homepage_posts':homepage_posts,'user_data':user_data}
+        pcount = db.GqlQuery("SELECT repo_stat FROM PromotedRepos WHERE promoting_repo_language= :l2",l2='Python').get()
+        template_values={'user_login_id':user_login_id,'homepage_posts':homepage_posts,'user_data':user_data, 'pcount':pcount}
         template = jinja_env.get_template('homepage.html')
         self.response.out.write(template.render(template_values))
     else:
@@ -112,7 +106,7 @@ class Developer(BaseHandler):
         url_queries = self.request.GET
         state = url_queries['state']
         code = url_queries['code']
-        url = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'+str(code)
+        url = 'https://github.com/login/oauth/access_token?client_id=a454ac3fef0a7cde71df&client_secret=4029cf0da2c400aa755d818dcdda96be97fc94a4&redirect_uri=http://gitpromote.appspot.com/dev&code='+str(code)
         req = requests.post(url)
         req = str(req.content)
         access_token = ""
@@ -280,8 +274,13 @@ class Promote(BaseHandler):
         promoting_repo_stars = self.request.get('promoting_repo_stars')
         promoted_time = datetime.now()
         promoting_repo_description = self.request.get('promoting_repo_description')
-        pr = PromotedRepos(key_name=promoting_repo_name,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_user_avatar_url=promoting_user_avatar_url,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
-        pr.put()
+
+        rs = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :l1", l1=promoting_repo_language).get()
+        rs = int(rs.repo_stat) + 1
+        pr1 = PromotedRepos(key_name=promoting_repo_name,repo_stat=rs,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_user_avatar_url=promoting_user_avatar_url,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
+        pr1.put()
+        
+
         self.redirect('http://gitpromote.appspot.com')
 
 class Tag(BaseHandler):
