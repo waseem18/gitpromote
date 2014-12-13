@@ -2,7 +2,7 @@
 <html>
 <head>
     {% for ud in user_data %}
-    <title>{{ud.fullname}}</title>
+    <title>{{ud.fullname}} - gitpromote</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/post.css" rel="stylesheet">
   <script src="/js/bootstrap.min.js"></script>
@@ -29,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a style="margin-left:160px;margin-top:-13px"class="navbar-brand" href="#"><img src="/images/logo.jpg"></a>
+      <a style="margin-left:160px;margin-top:-13px"class="navbar-brand" href="https://gitpromote.appspot.com"><img src="/images/logo.jpg"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -88,22 +88,29 @@
         {% for p in post %}
         <div class="[ col-xs-8 col-sm-offset-2 col-sm-6 ]" >
             <div class="[ panel panel-default ] panel-google-plus">
-                {% if p.promoting_repo_stars|int > 5 %}
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li><a href="https://gitpromote.appspot.com/tagged/{{p.promoting_repo_language}}" style="text-decoration: none">{{p.promoting_repo_language}}</a></li>
+                    </ul>
+                </div>
+                <!--{% if p.promoting_repo_stars|int > 5 %}
                 <div class="panel-google-plus-tags">
                     <ul>
                         <li>Featured</li>
                     </ul>
                 </div>
-                {% endif %}
+                {% endif %}-->
                 <div class="panel-heading">
                     <img class="[ img-circle pull-left ]" src="{{p.promoting_user_avatar_url}}" alt="Mouse0270" height="46" width="46"/>
-                    <a href="https://gitpromote.appspot.com/user/{{p.promoting_user_name}}"><h4>{{p.promoting_user_fullname}}</h4></a>
+                    <a href="https://gitpromote.appspot.com/user/{{p.promoting_user_name}}" data-toggle="tooltip" data-placement="top"><h4>{{p.promoting_user_fullname}}</h4></a>
+                    <!--a href="https://gitpromote.appspot.com/user/{{p.promoting_user_name}}" style="text-decoration: none"><h4>{{p.promoting_user_fullname}}</h4></a-->
                     <h5><span>Promoted on </span> - <span>Jun 27, 2014</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <a href="https://gitpromote.appspot.com/repo/{{p.promoting_repo_name}}"><h3>{{p.promoting_repo_name}}</h3></a>
-                    <p>{{p.promoting_repo_description}}</p>
-                    <button type="button" class="btn btn-default"><a href="https://gitpromote.appspot.com/tagged/{{p.promoting_repo_language}}">{{p.promoting_repo_language}}</a></button>
+                    <a href="https://gitpromote.appspot.com/repo/{{p.promoting_repo_name}}" style="text-decoration: none"><h4>{{p.promoting_repo_name}}</h4></a>
+                    <p style="font-size: 16px">{{p.promoting_repo_description}}</p>
+                    <p style="font-size:20px"><span class="label label-default">Reason</span></p><p style="font-size: 16px">{{p.promoting_reason}}</p>
+                
                 </div>
                 <!--div class="panel-footer">
                     <a href="#">edit tags</a>
@@ -120,7 +127,8 @@
     </div>
     {% endfor %}
 </div>
-<h3 class="stuck">Python x  {{pcount}}</h3>
+<!--Here is the column for statistics-->
+<!--h3 class="stuck">Python x  {{pcount}}</h3-->
         
         <!--div class="[ col-xs-12 col-sm-5 ]">
             <div class="[ panel panel-default ] panel-google-plus">
