@@ -1,9 +1,3 @@
-#Author: Wasim Thabraze
-#Product:gitpromote
-#version: alpha
-#License: MIT
-#Bug: Delete a repo which is deleted on github.
-#Logout user if there is a change in the session id stored in cookie!
 import webapp2
 import jinja2
 import requests
@@ -76,8 +70,8 @@ class PromotedRepos(db.Model):
    promoting_repo_language = db.StringProperty()
    promoting_repo_forks = db.StringProperty()
    promoting_repo_stars = db.StringProperty()
-   promoting_repo_description = db.StringProperty()
-   repo_stat = db.IntegerProperty()
+   promoting_repo_description = db.StringProperty(multiline=True)
+   promoting_reason = db.StringProperty(multiline=True)
 
 
 
@@ -89,8 +83,8 @@ class MainHandler(BaseHandler):
         user_login_id = self.session.get('user_login_id')
         user_data = db.GqlQuery("SELECT * FROM Userdata WHERE user_login_id= :g",g=user_login_id)
         homepage_posts = db.GqlQuery("SELECT * FROM PromotedRepos ORDER BY promoted_time DESC LIMIT 50")
-        pcount = db.GqlQuery("SELECT repo_stat FROM PromotedRepos WHERE promoting_repo_language= :l2",l2='Python').get()
-        template_values={'user_login_id':user_login_id,'homepage_posts':homepage_posts,'user_data':user_data, 'pcount':pcount}
+        #pcount = db.GqlQuery("SELECT repo_stat FROM PromotedRepos WHERE promoting_repo_language= :l2",l2='Python').get()
+        template_values={'user_login_id':user_login_id,'homepage_posts':homepage_posts,'user_data':user_data}
         template = jinja_env.get_template('homepage.html')
         self.response.out.write(template.render(template_values))
     else:
@@ -272,12 +266,10 @@ class Promote(BaseHandler):
         promoting_user_avatar_url = pro.avatar_url
         promoting_repo_forks = self.request.get('promoting_repo_forks')
         promoting_repo_stars = self.request.get('promoting_repo_stars')
+        promoting_reason = self.request.get('promoting_reason')
         promoted_time = datetime.now()
         promoting_repo_description = self.request.get('promoting_repo_description')
-
-        rs = db.GqlQuery("SELECT * FROM PromotedRepos WHERE promoting_repo_language= :l1", l1=promoting_repo_language).get()
-        rs = int(rs.repo_stat) + 1
-        pr1 = PromotedRepos(key_name=promoting_repo_name,repo_stat=rs,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_user_avatar_url=promoting_user_avatar_url,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
+        pr1 = PromotedRepos(key_name=promoting_repo_name,promoting_reason=promoting_reason,promoting_repo_stars=promoting_repo_stars,promoting_user_fullname=promoting_user_fullname,promoting_user_avatar_url=promoting_user_avatar_url,promoting_repo_description=promoting_repo_description,promoting_repo_forks=promoting_repo_forks,promoting_repo_language=promoting_repo_language,promoting_user_name=promoting_user_name,promoting_repo_name=promoting_repo_name,promoted_time=promoted_time)
         pr1.put()
         
 
