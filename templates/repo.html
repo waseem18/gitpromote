@@ -7,7 +7,8 @@
   <link href="/css/custom.css" rel="stylesheet">
   <link href="/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/social-buttons.css">
-
+  <link href="../images/favicon.png" rel="icon" type="image/x-icon" />
+  <title>{{ri.repo_name}} - gitpromote</title>
   <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -33,7 +34,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a style="margin-left:160px;margin-top:-13px"class="navbar-brand" href="#"><img src="/images/logo.jpg"></a>
+      <a style="margin-left:160px;margin-top:-13px"class="navbar-brand" href="https://gitpromote.appspot.com"><img src="/images/logo.jpg"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -95,12 +96,14 @@
   <br>
   <form method="post" action="https://gitpromote.appspot.com/promote">
   <h3>Promote repository</h3>
+  <textarea rows="4" cols="50" name = "promoting_reason">You are trying to promote this repository because...</textarea>
   <input type="hidden" name="promoting_repo_name" value="{{ri.repo_name}}">
   <input type="hidden" name="promoting_user_name" value="{{ri.user_login_id}}">
   <input type="hidden" name="promoting_repo_language" value="{{ri.language}}">
   <input type="hidden" name="promoting_repo_forks" value="{{ri.forks}}">
   <input type="hidden" name="promoting_repo_stars" value="{{ri.stars}}">
   <input type="hidden" name="promoting_repo_description" value="{{ri.description}}">
+  <br>
   <input type="submit" value="promote">
   <!--button type="button" class="btn btn-default"><a href="http://gitpromote.appspot.com/promote">Promote</a></button-->
 </form>
