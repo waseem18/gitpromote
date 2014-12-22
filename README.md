@@ -1,5 +1,5 @@
 
-Note: This code will be rewrited clearly with comments in January!
+Note: This code will be rewritten clearly in January!
 
 <a href="#"><img src="http://gitpromote.appspot.com/images/logo.jpg"></a>
 ====================================================================
