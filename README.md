@@ -1,5 +1,5 @@
 
-Note: This code will be rewritten clearly in January!
+Note: The product will be launched within a week!
 
 <a href="#"><img src="http://gitpromote.appspot.com/images/logo.jpg"></a>
 ====================================================================
