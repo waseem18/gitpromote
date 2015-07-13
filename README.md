@@ -3,7 +3,7 @@ Note: The product is under development. Will try to release in beta as soon as p
 
       Currently I'm the only one who is working on this project. So it may take time. Love to contribute? Ping in me :)
 
-<a href="https://gitpromote.appspot.com"><h3>Gitpromote</h3></a>
+<a href="https://gitpromote.appspot.com">gitpromote</a>
 ====================================================================
 <b>gitpromote</b> is a social utility for github users to promote their projects to more people like you and me.
 
