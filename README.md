@@ -1,5 +1,7 @@
 
-Note: The product will be launched within a week!
+Note: The product is under development. Will try to release in beta as soon as possible.
+
+      Currently I'm the only one who is working on this project. So it may take time. Love to contribute? Ping in me :)
 
 <a href="#"><img src="http://gitpromote.appspot.com/images/logo.jpg"></a>
 ====================================================================
