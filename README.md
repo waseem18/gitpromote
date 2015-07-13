@@ -3,7 +3,7 @@ Note: The product is under development. Will try to release in beta as soon as p
 
       Currently I'm the only one who is working on this project. So it may take time. Love to contribute? Ping in me :)
 
-<a href="#"><img src="http://gitpromote.appspot.com/images/logo.jpg"></a>
+https://gitpromote.appspot.com/
 ====================================================================
 <b>gitpromote</b> is a social utility for github users to promote their projects to more people like you and me.
 
@@ -22,22 +22,5 @@ Features to be added soon
 Much more...
 
 
-Note:
------
-Add bootstrap files(not folder) to the static folder if you clone this repository.
 
-Donation
-------------
-
-Please consider donation if this project has helped you in anyway.
-
-<a href="https://gratipay.com/waseem18">Gratipay-Wasim Thabraze</a>
-
-
-License
-----------
-MIT
-
-
-
-Copyright (c) 2014 Wasim Thabraze
+Copyright (c) 2015 Wasim Thabraze
