@@ -36,10 +36,7 @@ handlers:
 
 - url: /.*
   script: main.app
-<<<<<<< HEAD
   secure : always
-=======
->>>>>>> 928e72f3abd2db639539b5f53075d69c1f084210
 
 
 libraries:

@@ -9,11 +9,3 @@ indexes:
 # manually, move them above the marker line.  The index.yaml file is
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
-<<<<<<< HEAD
-=======
-
-- kind: Userdata
-  properties:
-  - name: user_login_id
-  - name: fullname
->>>>>>> 928e72f3abd2db639539b5f53075d69c1f084210
