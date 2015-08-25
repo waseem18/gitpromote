@@ -8,7 +8,7 @@ Note : This project is being merged with another cool idea. We'll hopefully reve
 
 This project is also being named!
 
-The name 'gitpromote' lies within 'Wasim Thabraz (waseem18)'
+The name 'gitpromote' lies within 'Wasim Thabraze (waseem18)'
 
 
 Note : This project is under development. Join the waiting list for the Beta release at https://gitpromote.appspot.com/
