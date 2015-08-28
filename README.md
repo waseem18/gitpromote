@@ -2,7 +2,7 @@
 
 <a href="https://gitpromote.appspot.com/"><h2>gitpromote</h2></a>
 
-Promote your open source projects to many other people like you!
+Promote your open source projects to many other people who are like you!
 
 Note : This project is being merged with another cool idea. We'll hopefully reveal it in the first week of September.
 
@@ -14,4 +14,4 @@ The name 'gitpromote' lies within 'Wasim Thabraze (waseem18)'
 
 Note : This project is under development. Join the waiting list for the Beta release at https://gitpromote.appspot.com/
 
-Ping in me if you are interested in speaking to me about this project :)
+Ping in me if you are interested in speaking to me about this project :).
