@@ -15,3 +15,7 @@ The name 'gitpromote' lies within 'Wasim Thabraze (waseem18)'
 Note : This project is under development. Join the waiting list for the Beta release at https://gitpromote.appspot.com/
 
 Ping in me if you are interested in speaking to me about this project :)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/waseem18/gitpromote/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
