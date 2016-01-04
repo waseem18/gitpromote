@@ -15,6 +15,8 @@ from google.appengine.ext import db
 from webapp2_extras import sessions
 from google.appengine.api import mail
 
+#demo change1
+#demo change2
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
                                autoescape = True)
@@ -32,7 +34,7 @@ class BaseHandler(webapp2.RequestHandler):
         self.session_store = sessions.get_store(request=self.request)
  
         try:
-            # Dispatch the request.
+            # Dispatch the request!
             webapp2.RequestHandler.dispatch(self)
         finally:
             # Save all sessions.
