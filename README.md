@@ -5,5 +5,3 @@
 Note : This repo contains legacy code which I wrote in the initial days of my college.
 
 Promote your open source projects to many other people like you!
-
-Note : The idea of this project is being developed and improved in another project. Will soon reveal it. :)
